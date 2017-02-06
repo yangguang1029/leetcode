@@ -8,3 +8,8 @@ var amn = function(m,n) {   // A(m,n)
     }
     return re;
 }
+
+  function TreeNode(val) {
+      this.val = val;
+      this.left = this.right = null;
+  }

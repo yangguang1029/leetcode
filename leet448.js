@@ -9,7 +9,7 @@ var findDisappearedNumbers = function(nums) {
     var re = [];
     for(var i = 0, len = nums.length; i < len; i++) {
     	if(nums[i] > 0) {
-    		re.push(i);
+    		re.push(i+1);
     	}
     }
     return re;
