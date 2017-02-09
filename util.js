@@ -9,7 +9,27 @@ var amn = function(m,n) {   // A(m,n)
     return re;
 }
 
+var stringToDic = function(s) {
+    var dic = {};
+    for(var i = 0, len = s.length; i < len; i++) {
+      var c = s[i];
+      var tmp = dic[c];
+      if(tmp) {
+        dic[c] = tmp + 1;
+      }else {
+        dic[c] = 1;
+      }
+    }
+    return dic;
+  }
+
   function TreeNode(val) {
       this.val = val;
       this.left = this.right = null;
   }
+
+
+function ListNode(val) {
+     this.val = val;
+     this.next = null;
+ }
