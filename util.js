@@ -9,6 +9,10 @@ var amn = function(m,n) {   // A(m,n)
     return re;
 }
 
+var sortNumFunc = function(left,right) {
+  return left- right;
+}
+
 var printArr = function(arr) {
   console.log(arr.join("->"));
 }
