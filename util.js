@@ -164,3 +164,29 @@ function ListNode(val) {
   this.val = val;
   this.next = null;
 }
+
+var createList = function(arr) {
+  var len = arr.length;
+  if(len === 0) {
+    return null;
+  }
+  var list = new ListNode(arr[0]);
+  var p = list;
+  for(var i = 1; i < len; i++) {
+    p.next = new ListNode(arr[i]);
+    p = p.next;
+  }
+  return list;
+}
+
+var printList = function(list) {
+  if(!list) {
+    console.log("list is null");
+    return;
+  }
+  var p = list;
+  while(p) {
+    console.log(p.val);
+    p = p.next;
+  }
+}
