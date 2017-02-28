@@ -3,6 +3,7 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
+	
     var p = head;
     var q = head;
     while(p && q) {
