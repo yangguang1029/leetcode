@@ -6,9 +6,6 @@ var isUgly = function(num) {
 	if(num <= 0) {
 		return false;
 	}
-    if(num === 1) {
-    	return true;
-    }
     while(num > 1){
     	if(num % 2 === 0) {
     		num = num/2;
