@@ -14,26 +14,19 @@ var strStr = function(haystack, needle) {
         return -1;
     }
     
-    //算出一个字符串的匹配值
-    var getSub = function(str) {
-    	var len = str.length;
-    	if(len === 1) {
-    		return 0;
-    	}
-    	var max = 0;
-    	for(var i = 1; i < len; i++) {
-    		if(str.slice(0, i) === str.slice(len-i)) {
-    			max = i;
-    		}
-    	}
-    	return max;
-    }
+   
     //算出needle的部分匹配表
-    var subs = [];
-    
-    for(var i = 0; i < nlen; i++) {
-    	subs[i] = getSub(needle.slice(0, i+1));
-    }
+    var nexts = [0];
+    var j = 0;
+    for(var i = 1; i < nlen; i++) {
+    	while(j > 0 && needle[j] !== needle[i]) {
+            j = nexts[j];
+        }
+        if(needle[j] === needle[i]) {
+            j += 1;
+        }
+        nexts[i] = j;
+    }ß
 
     var index = 0;
     
@@ -49,12 +42,13 @@ var strStr = function(haystack, needle) {
     	if(step === nlen) {
     		return index;
     	}
-    	index += (step- subs[step-1]);
+    	index += (step- nexts[step-1]);
     }
 
     return -1;
 };
 
-console.log(strStr("bbc abcdab abcdabcdabde", "abcdabd"))
+
+
 
 
