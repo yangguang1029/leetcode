@@ -9,11 +9,36 @@
 
 
 
-<script src="leet515.js"></script>
+<!-- <script src="leet532.js"></script> -->
 
 <script>
- 
 
+var A = function(){
+	this.a = 1;
+	var B = {
+		func1:function(){
+			console.log(this);
+		},
+		func2:function(){
+			console.log(this);
+		}.bind(this)
+	}
+
+	B.func1();
+	B.func2();
+
+	return B.func2;
+}
+
+var a = new A();
+
+
+// A()();
+
+// var C = function(){
+// 	A()();
+// }
+// var c = new C();
 
 </script>
 
