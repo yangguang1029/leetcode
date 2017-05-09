@@ -31,19 +31,24 @@ var findMode = function(root) {
                 cc += 1;
             } else {
                 if (cc > max) {
-                    re = [v];
+                    re = [current];
                     max = cc;
+                    current = v;
                 } else if (cc === max) {
                     re.push(v);
                 }
                 cc = 1;
             }
         }
+        test(node.right);
+        
     }
 
     test(root);
     return re;
 };
 
-var root = createTree([10, 5, 15, 5, 7, 15, 20, null, null, 7, 7]);
-printTree(root);
+var root = createTree([1, null, 2, 2]);
+// printTree(root);
+var fuck = findMode(root);
+printArr(fuck);
