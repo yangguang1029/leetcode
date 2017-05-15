@@ -1,10 +1,30 @@
-var amn = function(m, n) { // A(m,n)
+var amn = function(m, n) { // A(m,n) = m * (m-1)   * (m-n+1)
     if (m < n) {
         return 0;
     }
     var re = 1;
     for (var i = m - n + 1; i <= m; i++) {
         re *= i;
+    }
+    return re;
+}
+
+var cmn = function(m,n) {//c(m,n) = (m!)/((m-n)! * n!)
+    if(m < n) {
+        return 0;
+    }
+    return fact(m)/(fact(n) * fact(m-n));
+}
+
+var fact = function(n) {
+    if(n <= 0) {
+        return 1;
+    }
+    let re = 1;
+    let index = 1;
+    while(index <= n) {
+        re *= index;
+        index += 1;
     }
     return re;
 }
@@ -84,9 +104,11 @@ function TreeNode(val) {
     this.left = this.right = null;
 }
 
-var createTree = function(arr) {
-    var len = arr.length;
-
+var createTree = function(arr) {    //通过数组构造一个二叉树。按层顺序排列。每一层的空节点为null。不考虑空节点的子节点。，最后一层剩下都是空节点时可以不写
+    var len = arr.length;   //所以 1 null 2 null 3是 
+                            //         1
+                            //     null    2
+                            //         null  3               
     if (len < 0) {
         return null;
     }

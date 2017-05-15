@@ -1,9 +1,15 @@
-var numberOfBoomerangs = function(points){
+/**
+ * @param {number[][]} points
+ * @return {number}
+ */
 
-	var len = points.length;
+//fuck  思路完全没问题，系统抽风time exceed limit
+var numberOfBoomerangs = function(points) {
+    var len = points.length;
 	if(len < 3) {
 		return 0;
 	}
+	
 	var re = 0;
 	var dic = {};
 	for(var i = 0; i < len; i++) {
@@ -24,11 +30,12 @@ var numberOfBoomerangs = function(points){
 
 	for(var key in dic) {
 		var value = dic[key];
-		// console.log("key is " + key + " value is " + value)
-		re += amn(value, 2);
+		if(value < 2) {
+			continue;
+		}
+		re += (value * (value-1))
 	}
 	return re;
-
-}
+};
 
 console.log(numberOfBoomerangs([[0,0],[1,0],[2,0]]));
