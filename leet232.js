@@ -2,8 +2,8 @@
  * Initialize your data structure here.
  */
 var MyQueue = function() {
-    this.sa = [];
-    this.sb = [];
+    this.spush = [];
+    this.spop = [];
 };
 
 /**
@@ -12,7 +12,14 @@ var MyQueue = function() {
  * @return {void}
  */
 MyQueue.prototype.push = function(x) {
-
+    let spop = this.spop;
+    let spush = this.spush;
+    if (spop.length > 0) {
+        while (spop.length > 0) {
+            spush.push(spop.pop());
+        }
+    }
+    spush.push(x);
 };
 
 /**
@@ -20,7 +27,14 @@ MyQueue.prototype.push = function(x) {
  * @return {number}
  */
 MyQueue.prototype.pop = function() {
-
+    let spop = this.spop;
+    let spush = this.spush;
+    if (spush.length > 0) {
+        while (spush.length > 0) {
+            spop.push(spush.pop());
+        }
+    }
+    return spop.pop();
 };
 
 /**
@@ -28,7 +42,14 @@ MyQueue.prototype.pop = function() {
  * @return {number}
  */
 MyQueue.prototype.peek = function() {
-
+    let spop = this.spop;
+    let spush = this.spush;
+    if (spush.length > 0) {
+        while (spush.length > 0) {
+            spop.push(spush.pop());
+        }
+    }
+    return spop[spop.length - 1];
 };
 
 /**
@@ -36,7 +57,7 @@ MyQueue.prototype.peek = function() {
  * @return {boolean}
  */
 MyQueue.prototype.empty = function() {
-
+    return this.spush.length === 0 && this.spop.length === 0;
 };
 
 /** 
