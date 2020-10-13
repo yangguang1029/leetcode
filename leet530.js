@@ -35,6 +35,21 @@ var getMinimumDifference = function(root) {
     return min;
 };
 
+var getMinimumDifference = function(root) {
+    let left = root.left
+    let right = root.right
+    if(!left && !right) {
+        return Number.MAX_SAFE_INTEGER
+    }
+    if(!left) {
+        return Math.min(right.val - root.val, getMinimumDifference(right))
+    }
+    if(!right) {
+        return Math.min(root.val - left.val,  getMinimumDifference(left))
+    }
+    return Math.min(root.val - left.val, right.val - root.val, getMinimumDifference(left), getMinimumDifference(right))
+};
 
-var root = createTree([5,3,99,null,4.8,5.1])
+
+var root = createTree([236,104,701,null,227,null,911])
 console.log(getMinimumDifference(root));

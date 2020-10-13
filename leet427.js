@@ -1,52 +1,38 @@
-/**
- * // Definition for a QuadTree node.
- * function Node(val,isLeaf,topLeft,topRight,bottomLeft,bottomRight) {
- *    this.val = val;
- *    this.isLeaf = isLeaf;
- *    this.topLeft = topLeft;
- *    this.topRight = topRight;
- *    this.bottomLeft = bottomLeft;
- *    this.bottomRight = bottomRight;
- * };
+/*
+ * @lc app=leetcode.cn id=427 lang=javascript
+ *
+ * [427] 建立四叉树
  */
+
+  // Definition for a QuadTree node.
+  function Node(val,isLeaf,topLeft,topRight,bottomLeft,bottomRight) {
+     this.val = val;
+     this.isLeaf = isLeaf;
+     this.topLeft = topLeft;
+     this.topRight = topRight;
+     this.bottomLeft = bottomLeft;
+     this.bottomRight = bottomRight;
+  };
+ 
 /**
  * @param {number[][]} grid
  * @return {Node}
  */
  var construct = function(grid) {
-
-    function getGrid(rowstart, rowend, colstart, colend) {
-      let re = []
-      for(let i = rowstart; i < rowend; i++) {
-        re.push(grid[i].slice(colstart, colend))
-      }
-      return re
-    }
-
-    let node = new Node()
-    let len = grid.length
-    let val = grid[0][0]
-    let isleaf = true
-    for(let i = 0; i < grid.length; i++) {
-      let row = grid[i]
-      for(let j = 0; j < row.length; j++) {
-        if(row[j] !== val) {
-          isleaf = false
-          break
-        }
-      }
-      if(!isleaf) {
-        break
-      }
-    }
-    if(isleaf) {
-      node.val = val === 1 ? true : false
-    } else {
-      node.topLeft = new construct(getGrid(0, len/2, 0, len/2))
-      node.topRight = new construct(getGrid(0, len/2, len/2, len))
-      node.bottomLeft = new construct(getGrid(len/2, len, 0, len/2))
-      node.bottomRight = new construct(getGrid(len/2, len, len/2, len))
-    }
-    node.isLeaf = isleaf
-    return node
+  let isLeaf = true;
+  let length = grid.length
+  let v = grid[0][0]
+  if(length > 1) {
+      isLeaf = grid.every(row => row.every(item => item === v))
+  }
+  if(isLeaf) {
+      return new Node(v, true, null, null, null, null)
+  } 
+  return new Node(false, false, 
+      construct(grid.slice(0, length/2).map(item => item.slice(0, length / 2))),
+      construct(grid.slice(0, length/2).map(item => item.slice(length / 2))),
+      construct(grid.slice(length/2).map(item => item.slice(0, length / 2))),
+      construct(grid.slice(length/2).map(item => item.slice(length / 2))))
 };
+
+construct([[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0]])
