@@ -20,3 +20,25 @@ var invertTree = function(root) {
     root.right = invertTree(left);
     return root;
 };
+
+var invertTree = function(root) {
+    if(root) {
+        [root.left, root.right] = [root.right, root.left]
+        invertTree(root.left)
+        invertTree(root.right)
+    }
+    return root
+};
+
+var invertTree = function(root) {
+   function traverse(node) {
+    if(!node){
+        return;
+    }
+    [node.left, node.right] = [node.right, node.left]
+    traverse(node.left)
+    traverse(node.right)
+   }
+   traverse(root)
+   return root
+};

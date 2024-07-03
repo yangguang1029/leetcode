@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {number}
  */
-var lengthOfLastWord = function(s) {
+var lengthOfLastWord1 = function(s) {
     var len = s.length;
     var start = len-1;
     while(start >= 0 && s[start] === " ") {
@@ -17,3 +17,24 @@ var lengthOfLastWord = function(s) {
     }
     return start - end;
 };
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function(s) {
+
+    const len = s.length;
+
+    let q = len-1
+    while(q >= 0 && s.charAt(q) === '') {
+        q-=1
+    }
+    let p = q
+    while(p >= 0 && s.charAt(p) !== '') {
+        p-=1
+    }
+    return q-p
+};
+
+console.log(lengthOfLastWord('hello world'))

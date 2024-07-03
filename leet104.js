@@ -5,7 +5,7 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var maxDepth = function(root) {
+var maxDepth1 = function(root) {
     var depth = 0;
     if(!root) {
     	return depth;
@@ -29,4 +29,35 @@ var maxDepth = function(root) {
     }
     
     return depth;
+};
+
+var maxDepth = function(root) {
+	function getDepth(node) {
+		if(!node) {
+			return 0;
+		}
+		return Math.max(getDepth(node.left), getDepth(node.right)) + 1
+	}
+	return getDepth(root)
+};
+
+
+var maxDepth = function(root) {
+	let depth = 0;
+	let max = 0;
+	function traverse(node) {
+		if(!node) {
+			return;
+		}
+		depth += 1
+		if(depth > max) {
+			max = depth
+		}
+		traverse(node.left)
+		traverse(node.right)
+		depth -= 1
+	}
+
+	traverse(root)
+	return max;
 };

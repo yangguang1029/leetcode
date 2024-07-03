@@ -41,3 +41,16 @@ var containsNearbyDuplicate = function(nums, k) {
     }
     return false;
 };
+
+var containsNearbyDuplicate = function(nums, k) {
+	// 用一个字典存储最近的 index
+	const dic = {}
+	for(let i=0; i < nums.length; i++) {
+		const n = nums[i]
+		if(dic[n] !== undefined && i - dic[n] <= k) {
+			return true
+		}
+		dic[n] = i
+	}
+	return false
+};

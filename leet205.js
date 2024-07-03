@@ -3,7 +3,7 @@
  * @param {string} t
  * @return {boolean}
  */
-var isIsomorphic = function(s, t) {
+var isIsomorphic1 = function(s, t) {
     //用两个字典记录每个字母第一次出现的位置，遍历字符串，必须符合
     let dics = {};
     let dict = {};
@@ -30,6 +30,39 @@ var isIsomorphic = function(s, t) {
     return true;
 };
 
-console.log(isIsomorphic("ab", "aa"))
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function(s, t) {
+    if(s.length !== t.length) {
+        return false;
+    }
+    const sdic = {}
+    const tdic = {}
+    let isis = true;
+    for(let i = 0; i < s.length; i++) {
+        const sc = s.charAt(i)
+        const tc = t.charAt(i)
+        const sindex = sdic[sc]
+        const tindex = tdic[tc]
+        if(sindex !== tindex) {
+            isis = false;
+            break;
+        }
+        if(sindex === undefined) {
+            sdic[sc] = i;
+        }
+        if(tindex === undefined) {
+            tdic[tc] = i;
+        }
+        
+    }
+    return isis
+};
+
+console.log(isIsomorphic("badc", "baba"))
     // console.log(isIsomorphic("app", "bbq"))
     // console.log(isIsomorphic("appaabb", "bqqbbcc"))

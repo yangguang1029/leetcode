@@ -2,7 +2,7 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function(prices) {
+var maxProfit1 = function(prices) {
   var len = prices.length;
   if(len <= 1) {
   	return 0;
@@ -23,8 +23,59 @@ var maxProfit = function(prices) {
   return re;
 };
 
-console.log(maxProfit([1,4, 2]))
-// console.log(maxProfit([1, 2]))
-// console.log(maxProfit([3, 2, 1]))
-// console.log(maxProfit([7,2,5,1,8,4]))
-// console.log(maxProfit([7,2,5,8,1,10,4]))
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+// var maxProfit = function(prices) {
+
+// 	function getMinMax(arr, start, end) {
+// 		let min = Number.MAX_SAFE_INTEGER
+// 		let max = Number.MIN_SAFE_INTEGER
+// 		let minindex = -1
+// 		let maxindex = -1
+// 		for(let i = start; i < end; i++) {
+// 			const n = arr[i]
+// 			if(n > max) {
+// 				max = n;
+// 				maxindex = i
+// 			}
+// 			if(n < min) {
+// 				min = n;
+// 				minindex = i
+// 			}
+// 		}
+// 		return {
+// 			min,max,minindex,maxindex
+// 		}
+// 	}
+
+// 	const {min, max, minindex, maxindex} = getMinMax(prices, 0, prices.length)
+// 	if(minindex < maxindex) {
+// 		return max - min;
+// 	}
+// 	const rightdata = getMinMax(prices, minindex+1, prices.length)
+// 	const leftdata = getMinMax(prices, 0, maxindex)
+// 	let right = null;
+// 	let left = null;
+// 	if(rightdata.max > min) {
+// 		right = rightdata.max - min;
+// 	}
+// 	if(leftdata.min < max) {
+// 		left = max - leftdata.min
+// 	}
+// 	if(left && right) {
+// 		return Math.max(left,right)
+// 	}
+// 	if(left && !right) {
+// 		return left
+// 	}
+// 	if(right && !left) {
+// 		return right
+// 	}
+// 	return 0;
+
+// };
+
+console.log(maxProfit([7,2,4,1]))

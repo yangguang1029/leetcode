@@ -3,7 +3,7 @@
  * @param {string} str
  * @return {boolean}
  */
-var wordPattern = function(pattern, str) {
+var wordPattern1 = function(pattern, str) {
     var words = str.split(" ");
     var slen = words.length;
     var plen = pattern.length;
@@ -28,3 +28,33 @@ var wordPattern = function(pattern, str) {
     }
     return true;
 };
+
+var wordPattern = function(pattern, s) {
+
+	const arr = s.split(' ')
+	if(pattern.length !== arr.length) {
+		return false;
+	}
+	var pdic = {}
+	var sdic = {}
+	let ispattern = true
+	for(let i = 0; i < arr.length; i++) {
+		const pc = pattern.charAt(i)
+		const sc = arr[i]
+		const pindex = pdic[pc]
+		const sindex = sdic.hasOwnProperty(sc) ? sdic[sc] : undefined
+		if(pindex !== sindex) {
+			ispattern = false;
+			break;
+		}
+		if(!pindex) {
+			pdic[pc] = i
+		}
+		if(!sindex) {
+			sdic[sc] = i
+		}
+	}
+	return ispattern
+};
+
+console.log(wordPattern('abba', 'dog cat cat dog'))

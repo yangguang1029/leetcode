@@ -3,7 +3,7 @@
  * @param {string} needle
  * @return {number}
  */
-var strStr = function(haystack, needle) {
+var strStr1 = function(haystack, needle) {
     //kmp
     var nlen = needle.length;
     var hlen = haystack.length;
@@ -47,3 +47,49 @@ var strStr = function(haystack, needle) {
 
     return -1;
 };
+
+
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+    const nlen = needle.length;
+    // 找 needle 最长重复子串
+    const arr = [-1]
+    let nindex = 1;
+    while(nindex < nlen) {
+        if(needle.charAt(nindex) === needle.charAt(arr[nindex-1]+1)) {
+            arr[nindex] = arr[nindex-1]+1
+        } else {
+            arr[nindex] = arr[nindex-1]
+        }
+        nindex += 1
+    }
+    let nrepeatindex = Math.max(1, arr[nlen-1]+1) 
+
+    function check(hstr, nstr, start) {
+        for(let i = 0; i < nstr.length; i++) {
+            if(hstr.charAt(start+i) !== nstr.charAt(i) ) {
+                return false
+            }
+        }
+        return true;
+    }
+
+    const hlen = haystack.length;
+    let hindex = 0;
+    while(hindex < hlen) {
+        if(check(haystack, needle, hindex)) {
+            break;
+        } else {
+            hindex += nrepeatindex
+        }
+    }
+    return hindex >= hlen ? -1 : hindex
+};
+
+
+
+console.log(strStr('babbbbbabb', 'bbab'))
