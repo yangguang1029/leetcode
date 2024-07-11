@@ -2,7 +2,7 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function(prices) {
+var maxProfit1 = function(prices) {
     
     var len = prices.length;
     if(len < 2) {
@@ -27,6 +27,21 @@ var maxProfit = function(prices) {
 
     }
     return re;
+};
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+	let c = 0;
+    let len = prices.length;
+	prices.forEach((item, index) => {
+		if(index < len-1 &&  prices[index+1]> item) {
+			c += (prices[index+1]-item)
+		}
+	})
+	return c;
 };
 
 console.log(maxProfit([7,3,5,4,6,9]))
