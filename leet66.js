@@ -19,5 +19,5 @@ var plusOne = function(digits) {
     if(plus > 0) {
     	re.push(plus);
     }
-    return te.reverse();
+    return re.reverse();
 };

@@ -1,6 +1,9 @@
 /**
  * initialize your data structure here.
  */
+
+//没有想到使用辅助栈，而是想着用辅助数组存储
+
 var MinStack = function() {
     this._nums = [];
     this._mins = [];

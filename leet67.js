@@ -3,7 +3,44 @@
  * @param {string} b
  * @return {string}
  */
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
 var addBinary = function(a, b) {
+	var aarr = a.split('').reverse()
+	var barr = b.split('').reverse()
+	const alen = aarr.length
+	const blen = barr.length;
+	const rearr = []
+	let index = 0;
+	let plus = 0;
+	while(index < Math.min(alen, blen)) {
+		const n = parseInt(aarr[index]) + parseInt(barr[index]) + plus
+		plus = (n>1) ? 1: 0
+		rearr.push(n % 2)
+		index += 1
+	}
+	let leftarr = index < alen ? aarr : barr
+	while(index < Math.max(alen, blen)) {
+		const n = parseInt(leftarr[index]) + plus
+		plus = (n>1) ? 1: 0
+		rearr.push(n % 2)
+		index += 1
+	}
+	if(plus === 1) {
+		rearr.push(1)
+	}
+	return rearr.reverse().join('')
+};
+
+console.log(addBinary('11', '1'));
+
+
+
+var addBinary1 = function(a, b) {
 	
     var alen = a.length;
     var blen = b.length;
