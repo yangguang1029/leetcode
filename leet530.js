@@ -9,7 +9,29 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var getMinimumDifference = function(root) {
+
+
+var getMinimumDifference2 = function(root){
+    let min = Number.MAX_SAFE_INTEGER;
+    let last = null;
+    function traverse(node) {
+        if(!node) {
+            return;
+        }
+        traverse(node.left)
+        if(last !== null && (node.val - last)< min) {
+            min = node.val - last
+        }
+        last = node.val
+        traverse(node.right)
+    }
+    traverse(root)
+    return min
+
+}
+
+
+var getMinimumDifference1 = function(root) {
     let arr = [];
     function middleOrder(node, re) {
         if(!node) {
@@ -35,7 +57,7 @@ var getMinimumDifference = function(root) {
     return min;
 };
 
-var getMinimumDifference = function(root) {
+var getMinimumDifference2 = function(root) {
     let left = root.left
     let right = root.right
     if(!left && !right) {

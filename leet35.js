@@ -14,19 +14,25 @@ var searchInsert1 = function(nums, target) {
 };
 
 var searchInsert = function(nums, target) {
+    const len = nums.length;
+    
     let left = 0;
-    let right = nums.length;
-    while(left < right-1) {
-        const mid =  Math.floor((left+right)/2)
+    let right = len-1
+    while(left < right) {
+        const mid = Math.floor((left+right)/2)
         const n = nums[mid]
         if(n === target) {
             return mid
         }else if(n < target) {
-            left = mid
-        }else {
+            left = mid+1
+
+        } else {
             right = mid
         }
     }
-    return left
+    // 到这里时，left 和 right 一定想等了
+    return target === nums[left] ? left : (target < nums[left] ? left : left + 1 )
 
 }
+
+console.log(searchInsert([1], 1));

@@ -231,3 +231,30 @@ function testStrJoin() {
     }
     console.log("after " + Date.now());
 }
+
+function _Node(val, neighbors) {
+        this.val = val === undefined ? 0 : val;
+        this.neighbors = neighbors === undefined ? [] : neighbors;
+};
+
+// 构造无向图，每个节点值唯一
+// 简单起见，每个节点的值都和它的索引相同
+// [[2,4],[1,3],[2,4],[1,3]]
+function createGraph(arr) {
+
+    const m = new Map();
+    const nodes = arr.map((item, index) => {
+        const val = index+1
+        const node = new _Node(val)
+        m.set(val, node)
+        return node;
+    })
+
+    nodes.forEach((node, index)=> {
+        const neighbors = arr[index]
+        node.neighbors = neighbors.map(item => m.get(item))
+    })
+    
+    return nodes[0]
+
+}
